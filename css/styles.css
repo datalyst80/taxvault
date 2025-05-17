@@ -1,0 +1,4 @@
+body {
+  padding-top: 30px;
+  -webkit-app-region: drag; /* macht das obere Feld verschiebbar */
+}
