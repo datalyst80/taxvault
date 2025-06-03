@@ -1,23 +1,27 @@
 {
-  "name": "uhv-manager",
+  "name": "taxvault",
   "version": "1.0.0",
+  "type": "commonjs",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && electron ./dist/main.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Eidenschink Michael",
+  "license": "MIT",
   "description": "",
   "dependencies": {
     "better-sqlite3": "^11.10.0",
     "electron": "^36.2.1"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/electron": "^1.4.38",
     "@types/node": "^22.15.18",
+    "@types/papaparse": "^5.3.16",
     "concurrently": "^9.1.2",
+    "electron-rebuild": "^3.2.9",
     "typescript": "^5.8.3",
     "wait-on": "^8.0.3"
   }

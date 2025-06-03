@@ -2,12 +2,100 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
-    <title>UHV-Manager</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <title>TaxVault - Krypto Steuer Tool</title>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <h1>Boilerplate-Electron</h1>
-    <p>Lorem ipsum... </p>
+    <div id="titlebar"></div>
+
+    <header>
+      <h1>TaxVault</h1>
+      <p>Importiere deine Krypto-Transaktionen zur steuerlichen Auswertung.</p>
+
+      <nav id="top-nav">
+        <ul>
+          <li class="active" data-view="dashboard">Dashboard</li>
+          <li data-view="transactions">Transaktionen</li>
+          <li data-view="reports">Berichte</li>
+        </ul>
+      </nav>
+
+    </header>
+
+    <main id="main-content">
+
+      <section id="dashboard" class="view active">
+        <h2>Dashboard</h2>
+        <section class="stats-grid">
+          <div class="stat-box">
+            <h3>Gesamte Käufe</h3>
+            <p>0,0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Gesamte Verkäufe</h3>
+            <p>0,0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Real. Gewinn</h3>
+            <p style="color: green;">0,0</p>
+          </div>
+          <div class="stat-box">
+            <h3>Anzahl Coins</h3>
+            <p>0,0</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="transactions" class="view">
+        <h2>Transaktionen</h2>
+
+        <div class="year-select-wrapper">
+          <label for="year-select">Steuerjahr auswählen:</label>
+          <select id="year-select">
+            <option value="all">Alle Jahre</option>
+          </select>
+        </div>
+
+        <div class="import-controls">
+          <label for="file-input">Transaktionsdatei auswählen - CSV:</label>
+          <input type="file" id="file-input" accept=".csv" />
+          <button id="import-btn">Importieren</button>
+        </div>
+
+        <table id="transactions-table" style="margin-top: 20px; width: 100%;">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Typ</th>
+              <th>Coin</th>
+              <th>Menge</th>
+              <th>Preis pro Coin (EUR)</th>
+              <th>Gesamtwert (EUR)</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </section>
+
+      <section id="reports" class="view">
+        <h2>Berichte</h2>
+        <div class="report-controls">
+          <label for="report-year">Jahr wählen:</label>
+          <select id="report-year">
+            <option value="all">Alle Jahre</option>
+          </select>
+          <button id="generate-report">Bericht erzeugen</button>
+        </div>
+        <div id="report-output">
+          <!-- Dynamisch generierter Bericht -->
+        </div>
+      </section>
+
+    </main>
+
+    <script type="module" src="./dist/renderer.js"></script>
   </body>
 </html>

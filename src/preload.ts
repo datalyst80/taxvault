@@ -1,11 +1,27 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
+
+const validChannels = {
+  saveTransaction: 'save-transaction',
+  saveTransactions: 'save-transactions',  // neu
+  loadTransactions: 'load-transactions',
+  transactionsLoaded: 'transactions-loaded',
+  error: 'error'
+};
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  // Beispiel: Funktionen, um vom Renderer aus mit Main Prozess zu kommunizieren
-  sendMessage: (channel: string, data: any) => {
-    ipcRenderer.send(channel, data);
+  saveTransaction: (transaction: any) => {
+    ipcRenderer.send(validChannels.saveTransaction, transaction);
   },
-  onMessage: (channel: string, callback: (event: any, data: any) => void) => {
-    ipcRenderer.on(channel, (event, data) => callback(event, data));
+  saveTransactions: (transactions: any[]) => {     // neu
+    ipcRenderer.send(validChannels.saveTransactions, transactions);
+  },
+  loadTransactions: () => {
+    ipcRenderer.send(validChannels.loadTransactions);
+  },
+  onTransactionsLoaded: (callback: (transactions: any[]) => void) => {
+    ipcRenderer.on(validChannels.transactionsLoaded, (_event: IpcRendererEvent, data) => callback(data));
+  },
+  onError: (callback: (error: string) => void) => {
+    ipcRenderer.on(validChannels.error, (_event: IpcRendererEvent, error) => callback(error));
   }
 });
