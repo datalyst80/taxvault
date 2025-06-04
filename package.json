@@ -8,7 +8,7 @@
     "start": "npm run build && electron ./dist/main.js"
   },
   "keywords": [],
-  "author": "Eidenschink Michael",
+  "author": "datalyst80",
   "license": "MIT",
   "description": "",
   "dependencies": {

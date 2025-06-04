@@ -27,7 +27,8 @@ function createWindow() {
       nodeIntegration: false,
     },
   });
-
+  
+  win.maximize();
   win.loadFile(path.join(__dirname, '../index.html'));
 }
 
